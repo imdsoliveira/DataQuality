@@ -1,0 +1,21 @@
+[project]
+name = "dataquality"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Douglas Oliveira",email = "63203428+imdsoliveira@users.noreply.github.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "streamlit (>=1.41.1,<2.0.0)",
+    "black (>=24.10.0,<25.0.0)",
+    "isort (>=5.13.2,<6.0.0)",
+    "pydocstyle (>=6.3.0,<7.0.0)",
+    "mkdocs (>=1.6.1,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,25 @@
+[theme]
+base="dark"
+primaryColor="#309BFC"
+font="sans serif"
+
+[server]
+runOnSave = true
+
+[server]
+enableStaticServing = true
+enableXsrfProtection = false
+
+[browser]
+gatherUsageStats = false
+
+[client]
+toolbarMode = "minimal"
+showSidebarNavigation = false
+
+[runner]
+fastRerenderEnabled = false
+
+[ui]
+hideTopBar = true
+hideSidebarNav = true

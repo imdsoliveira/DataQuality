@@ -1,0 +1,83 @@
+.metric-card {
+    background-color: #1E1E1E;
+    border-radius: 8px;
+    padding: 16px;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.metric-card.success {
+    background-color: rgba(46, 204, 113, 0.1);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.metric-card.error {
+    background-color: rgba(231, 76, 60, 0.1);
+    border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+.metric-card h4 {
+    color: #CCCCCC;
+    margin: 0 0 8px 0;
+    font-size: 14px;
+}
+
+.metric-card h2 {
+    color: white;
+    margin: 0 0 8px 0;
+    font-size: 24px;
+}
+
+.metric-card p {
+    color: #888888;
+    margin: 0;
+    font-size: 14px;
+}
+
+.trophy-card {
+    background-color: #1E1E1E;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.trophy-card:hover {
+    background-color: #2A2A2A;
+}
+
+/* Custom styles for Streamlit components */
+.stButton>button {
+    width: 100%;
+    background-color: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stButton>button:hover {
+    background-color: rgba(33, 150, 243, 0.1);
+    border: 1px solid #2196F3;
+}
+
+/* Map container 
+.map-container {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}*/
+
+/* Custom metric display */
+.main-metric {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+}
+
+.main-metric-label {
+    font-size: 14px;
+    color: #CCCCCC;
+}
+
+div[data-testid="stVerticalBlock"] > div[data-testid="stVerticalBlock"] {
+    padding: 0 !important;
+}
