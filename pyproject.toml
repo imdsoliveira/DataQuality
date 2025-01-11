@@ -13,7 +13,8 @@ dependencies = [
     "isort (>=5.13.2,<6.0.0)",
     "pydocstyle (>=6.3.0,<7.0.0)",
     "mkdocs (>=1.6.1,<2.0.0)",
-    "taskipy (>=1.14.1,<2.0.0)"
+    "taskipy (>=1.14.1,<2.0.0)",
+    "pydantic[email] (>=2.10.5,<3.0.0)"
 ]
 
 
