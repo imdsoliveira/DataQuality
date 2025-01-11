@@ -1,21 +1,28 @@
-"""Schema de dados para contrato de funcionário."""
+"""Arquivo de Schema de Funcionarios."""
 
-from pydantic import BaseModel
+from datetime import datetime
 
-class ContratoFuncionario(BaseModel):
-    """Classe responsável por representar o contrato de funcionário."""
-    id: int
+from pydantic import BaseModel, EmailStr, PositiveInt
+
+
+class ContratoFuncionarios(BaseModel):
+    """
+    Classe responsável pelo contrato de dados do Funcionário.
+
+    Args:
+        id (PositiveInt): ID do Funcionário.
+        nome (str): Nome do Funcionário.
+        idade (PositiveInt): Idade do Funcionário.
+        datanascimento (datetime): Data de Nascimento do Funcionário.
+        email (EmailStr): Email do Funcionário.
+        cargo (str): Cargo do Funcionário.
+        departamento (str): Departamento do Funcionário.
+    """
+
+    id: PositiveInt
     nome: str
+    idade: PositiveInt
+    datanascimento: datetime
+    email: EmailStr
     cargo: str
-    salario: float
-    data_contratacao: str
-    email: str
-    telefone: str
-    endereco: str
-    cep: str
-    cidade: str
-    estado: str
-    pais: str
     departamento: str
-    
-    

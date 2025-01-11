@@ -1,38 +1,68 @@
-"""Arquivo de teste do schema de dados."""
+"""Arquivo de teste do schema definido."""
+
+import sys
+from pathlib import Path
+current_dir = Path(__file__).resolve().parent
+parent_dir = current_dir.parent
+sys.path.insert(0, str(parent_dir))
+
+"""Arquivo de teste do schema definido."""
+
+from datetime import datetime
 
 import pytest
 from pydantic import ValidationError
-from scr.schema import ContratoFuncionario
+
+from src.schema import ContratoFuncionarios
+
 
 def test_validar_contrato():
+    """Teste para validar o schema."""
     dados_validos = {
         "id": 1,
-        "nome": "John Doe",
-        "cargo": "Developer",
-        "salario": 5000.0,
-        "data_contratacao": "2022-01-01,
-        "email": "Hs2dC@example.com",
-        "telefone": "123456789",
-        "endereco": "123 Main St, Anytown, USA",
-        "cep": "12345-678",
-        "cidade": "Anytown",
-        "estado": "US",
-        "pais": "United States",
-        "departamento": "IT",
+        "nome": "Gustavo",
+        "idade": 18,
+        "datanascimento": datetime.now(),
+        "email": "gustavo@email.com",
+        "cargo": "Desenvolvedor",
+        "departamento": "TI",
     }
-    
-    funcionario = ContratoFuncionario(**dados_validos)
-    
+    funcionario = ContratoFuncionarios(**dados_validos)
+
     assert funcionario.id == dados_validos["id"]
     assert funcionario.nome == dados_validos["nome"]
-    assert funcionario.cargo == dados_validos["cargo"]
-    assert funcionario.salario == dados_validos["salario"]
-    assert funcionario.data_contratacao == dados_validos["data_contratacao"]
+    assert funcionario.idade == dados_validos["idade"]
+    assert funcionario.datanascimento == dados_validos["datanascimento"]
     assert funcionario.email == dados_validos["email"]
-    assert funcionario.telefone == dados_validos["telefone"]
-    assert funcionario.endereco == dados_validos["endereco"]
-    assert funcionario.cep == dados_validos["cep"]
-    assert funcionario.cidade == dados_validos["cidade"]
-    assert funcionario.estado == dados_validos["estado"]
-    assert funcionario.pais == dados_validos["pais"]
+    assert funcionario.cargo == dados_validos["cargo"]
     assert funcionario.departamento == dados_validos["departamento"]
+
+
+def test_email_invalidos_contrato_funcionario():
+    """Testa se o schema de dados é invalido."""
+    dados_invalidos = {
+        "id": 1,
+        "nome": "Luciano Borba",
+        "idade": 23,
+        "datanascimento": datetime.now(),
+        "email": "luhborbafilho",
+        "cargo": "Desenvolvedor Python",
+        "departamento": "TI",
+    }
+    with pytest.raises(ValidationError):
+        ContratoFuncionarios(**dados_invalidos)
+
+
+def test__n_negativo_dados_invalidos():
+    """Testa se o schema de dados é invalido."""
+    dados_invalidos = {
+        "id": -1,
+        "nome": "Luciano Borba",
+        "idade": 23,
+        "datanascimento": datetime.now(),
+        "email": "luhborbafilho@gmail.com",
+        "cargo": "Desenvolvedor Python",
+        "departamento": "TI",
+    }
+    with pytest.raises(ValidationError):
+        ContratoFuncionarios(**dados_invalidos)
