@@ -1,28 +1,31 @@
-[project]
-name = "dataquality"
+[tool.poetry]
+name = "curso-streamlit-dataquality"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "Douglas Oliveira",email = "63203428+imdsoliveira@users.noreply.github.com"}
-]
+authors = ["LucianoBorba <luhborbafilho@gmail.com>"]
 readme = "README.md"
-requires-python = ">=3.13,<4.0"
-dependencies = [
-    "streamlit (>=1.41.1,<2.0.0)",
-    "black (>=24.10.0,<25.0.0)",
-    "isort (>=5.13.2,<6.0.0)",
-    "pydocstyle (>=6.3.0,<7.0.0)",
-    "mkdocs (>=1.6.1,<2.0.0)",
-    "taskipy (>=1.14.1,<2.0.0)",
-    "pydantic[email] (>=2.10.5,<3.0.0)",
-    "pytest (>=8.3.4,<9.0.0)",
-    "selenium (>=4.27.1,<5.0.0)",
-    "streamlit-authenticator (>=0.4.1,<0.5.0)"
-]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+streamlit = "^1.32.2"
+black = "^24.3.0"
+isort = "^5.13.2"
+pydocstyle = "^6.3.0"
+mkdocs = "^1.5.3"
+pip-audit = "^2.7.2"
+pre-commit = "^3.7.0"
+taskipy = "^1.12.2"
+selenium = "^4.19.0"
+pytest = "^8.1.1"
+pydantic = {extras = ["email"], version = "^2.6.4"}
+sqlalchemy = "^2.0.29"
+mkdocs-dracula-theme = "^1.0.7"
+mkdocs-material = "^9.5.17"
+mkdocstrings = {extras = ["python"], version = "^0.24.3"}
 
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.taskipy.tasks]
