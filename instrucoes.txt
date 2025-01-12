@@ -48,5 +48,14 @@ poetry install
 
 ```bash
 docker build -t a8z-streamlit-dataquality .
-docker run -p 8501:8501 a8z-streamlit-dataquality
+
+docker build -t a8z-streamlit-indicadores .
+
+docker run -d -p 8501:8501 a8z-streamlit-dataquality
+
+docker run -d -p 8501:8501 a8z-streamlit-indicadores
+
+docker build --no-cache -t a8z-streamlit-dataquality . # forçar a atualização da imagem
+docker system prune -a # remover imagens não usadas
+
 ```
