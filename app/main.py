@@ -1,44 +1,68 @@
 import sys
 from pathlib import Path
-
 current_dir = Path(__file__).resolve().parent
 parent_dir = current_dir.parent
 sys.path.insert(0, str(parent_dir))
 
-import streamlit as st
+from datetime import datetime
+
 import pandas as pd
+import streamlit as st
+
+from src.database import Funcionarios, criar_sessao
 from src.schema import ContratoFuncionarios
 
-def validar(csv):
+
+def validar_e_inserir_no_banco(csv, session):
+    """
+    Função de Validar o arquivo em formato csv e inserir dados no Banco de Dados.
+
+    Args:
+        csv (str): Caminho do arquivo csv.
+        session (Session): Sessão do SQLAlchemy.
+    """
     try:
         df = pd.read_csv(csv)
         erros = []
         dados_validos = []
-        
+
         for idx, row in df.iterrows():
             try:
                 ContratoFuncionarios(**row.to_dict())
-            except Exception as e: # Captura a exceção
-                erros.append(f"Erro na linha {idx+2}: {e}")
+                row["datanascimento"] = datetime.strptime(
+                    row["datanascimento"], "%Y-%m-%d"
+                )
+                dados_validos.append(Funcionarios(**row.to_dict()))
+            except Exception as e:
+                erros.append(f"Error na Linha:{idx+2} de {e}")
+
         if erros:
-            st.error(f"Ocorreram erros ao validar o CSV")
+            st.error("Erros encontrados no Arquivo Enviado:")
             for erro in erros:
                 st.error(erro)
         else:
-            st.success("CSV validado com sucesso!")
+            session.add_all(dados_validos)
+            session.commit()
+            st.success("Arquivo Valido e Dados Inseridos no Banco de Dados!")
             return True
 
     except Exception as e:
-        st.error(f"Error ao ler o arquivo CSV: {e}")
-    
+        st.error(f"Error ao ler o arquivo: {e}")
+
+
 def main():
-    st.set_page_config(page_title="Validador de CSV", page_icon=":bar_chart:", layout="wide")
+    """Função principal onde executo o Streamlit para validar o CSV."""
+    st.set_page_config(page_title="Validador de CSV", layout="wide")
     st.title("Validador de CSV")
-    csv = st.file_uploader("Upload CSV", type=["csv"])
-    btn = st.button("Validar CSV")
-    
-    if btn and csv is not None:
-        validar(csv)
+    session = criar_sessao()
+
+    csv = st.file_uploader("Escolha um arquivo CSV para validar", type=["csv"])
+
+    botao = st.button("Validar")
+
+    if botao:
+        validar_e_inserir_no_banco(csv, session)
+
 
 if __name__ == "__main__":
-        main()
+    main()

@@ -1,0 +1,52 @@
+# Preparação do Ambiente:
+
+```bash
+python -m venv venv
+source venv/bin/activate  # Para Linux/macOS
+.\venv\Scripts\Activate  # Para Windows
+source ./venv/Scripts/activate # Usando bash
+```
+
+# Atualização do PIP
+
+```bash
+python.exe -m pip install --upgrade pip
+```
+
+# Instalação das Dependências
+
+```bash
+pip install -r requirements.txt
+```
+
+## Verifique se tudo foi instalado corretamente
+
+```bash
+pip list
+```
+
+### Se for usar poetry
+
+#### Instalar o Poetry
+
+```bash
+ pip install poetry
+```
+#### Gerar arquivo de Dependências
+
+```bash
+poetry init
+```
+
+#### Instalar Dependências
+
+```bash
+poetry install
+```
+
+#### Criar imagem 
+
+```bash
+docker build -t a8z-streamlit-dataquality .
+docker run -p 8501:8501 a8z-streamlit-dataquality
+```
