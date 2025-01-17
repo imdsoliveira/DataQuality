@@ -35,3 +35,4 @@ build-backend = "poetry.core.masonry.api"
 [tool.taskipy.tasks]
 format = "black . && isort ."
 check = "pydocstyle && pip-audit"
+run = "poetry run streamlit run ./app/main.py"
